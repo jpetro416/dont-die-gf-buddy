@@ -1,0 +1,27 @@
+run = "npm run dev"
+entrypoint = "app/page.tsx"
+hidden = [".config", ".next", "node_modules", "data/catalog.json"]
+modules = ["nodejs-22"]
+language = "nodejs"
+
+[nix]
+channel = "stable-24_11"
+
+[deployment]
+build = ["npm", "run", "build"]
+run = ["npm", "run", "start"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+[packager]
+language = "nodejs"
+
+[packager.features]
+packageSearch = true
+guessImports = true
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix", "package.json"]
